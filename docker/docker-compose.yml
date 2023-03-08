@@ -3,14 +3,16 @@ version: '2'
 services:
   localstack:
     image: localstack/localstack
+    container_name: localstack
     environment:
       - SERVICES=s3,dynamodb,sqs,sns
       - DEBUG=1
     ports:
       - "4566:4566"
     volumes:
-      - "var/lib/localstack"
+      - "/tmp/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
+      - ./localstack/init-scripts:/docker-entrypoint-initaws.d
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
     environment:

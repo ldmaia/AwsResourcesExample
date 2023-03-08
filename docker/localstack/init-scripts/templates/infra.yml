@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+  FeatureName:
+    Type: String
+    Default: aws
+  MicroServiceName:
+    Type: String
+    Default: resourcesexample
+  Env:
+    Type: String
+    Default: local
+
+Resources:
+  SqsRecebimentoArquivos:
+    Type: "AWS::SQS::Queue"
+    Properties:
+      QueueName: !Sub sqs-fila-recebimento-arquivo-${Env}
